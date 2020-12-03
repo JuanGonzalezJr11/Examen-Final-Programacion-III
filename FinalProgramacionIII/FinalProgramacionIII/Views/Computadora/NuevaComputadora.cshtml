@@ -1,0 +1,78 @@
+﻿@model FinalProgramacionIII.Models.Computadora
+@{
+    ViewBag.Title = "NuevaComputadora";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SelectListItem> itemsAulas = (List<SelectListItem>)ViewBag.ItemsAulas;
+}
+
+<div class="text-center">
+    <div class="text-success">
+        <h1>
+            Nueva computadora
+        </h1>
+    </div>
+</div>
+<br />
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-6 control-label">
+                        Número de aula:
+                    </label>
+                    <div class="col-sm-6">
+                        @Html.DropDownList("NumeroAula", itemsAulas, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-6 control-label">
+                        Estado:
+                    </label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(model => model.Estado, htmlAttributes: new { @class = "form-control", @id = "txtEstado" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-6 control-label">
+                        Funcionamiento:
+                    </label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(model => model.Funcionamiento, htmlAttributes: new { @class = "form-control", @id = "txtFuncionamiento" })
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <div class="col-xs-12">
+                        <button class="btn btn-primary" type="submit" onclick="return Validar();">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script>
+    function Validar()
+    {
+        let estado = document.getElementById("txtEstado").value;
+
+        if (isNaN(estado) || estado === "")
+        {
+            alert("¡Debe ingresar el estado de la computadora!");
+            return false;
+        }
+
+        let funcionamiento = document.getElementById("txtFuncionamiento").value;
+
+        if (isNaN(funcionamiento) || funcionamiento === "")
+        {
+            alert("¡Debe ingresar el funcionamiento de la computadora!")
+            return false;
+        }
+
+        return true;
+    }
+</script>    
+

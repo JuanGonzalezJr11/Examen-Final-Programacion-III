@@ -1,0 +1,68 @@
+﻿@model FinalProgramacionIII.ViewModels.Reportes.Reportes
+@{
+    ViewBag.Title = "Reporte";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <h2 class="text-success">
+            Reportes
+        </h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="col-sm-12">
+            <div>
+                <h4 class="text-primary">
+                    - Cantidad de computadoras en estado de revisión: @Model.Cantidad
+                </h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="col-sm-12">
+            <div>
+                <h4 class="text-primary">
+                    - Aulas con su promedio de funcionamiento de computadoras:
+                </h4>
+            </div>
+        </div>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        Número aula
+                    </th>
+                    <th class="text-center">
+                        Capacidad
+                    </th>
+                    <th class="text-center">
+                        Funcionamiento de computadoras
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var a in Model.ListadoAulasFuncionamiento)
+                {
+                    <tr class="text-center">
+                        <td>
+                            @a.Numero
+                        </td>
+                        <td>
+                            @a.Capacidad
+                        </td>
+                        <td>
+                            @a.Funcionamiento%
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
